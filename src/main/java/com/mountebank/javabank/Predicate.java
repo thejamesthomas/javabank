@@ -45,4 +45,8 @@ public class Predicate {
             throw new MatcherConflictException();
         }
     }
+
+    public Matcher getMatcher(int index) {
+        return matchers.get(index);
+    }
 }

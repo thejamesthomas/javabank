@@ -6,6 +6,10 @@ public class EqualsMatcher implements Matcher {
     private String type;
     private String value;
 
+    public EqualsMatcher() {
+
+    }
+
     public EqualsMatcher(String type, String value) {
         this.type = type;
         this.value = value;
@@ -19,5 +23,12 @@ public class EqualsMatcher implements Matcher {
     @Override
     public String getValue() {
         return value;
+    }
+
+    public EqualsMatcher withMethod(String method) {
+        type = "method";
+        value = method;
+
+        return this;
     }
 }

@@ -1,8 +1,8 @@
 package com.mountebank.javabank;
 
 import com.google.common.net.HttpHeaders;
-import org.apache.http.HttpStatus;
 import lombok.Getter;
+import org.apache.http.HttpStatus;
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;
@@ -14,7 +14,7 @@ public class Is {
     private int statusCode = HttpStatus.SC_OK;
 
     @Getter
-    private HashMap headers = newHashMap();
+    private HashMap<String, String> headers = newHashMap();
 
     @Getter
     private String body = "";
@@ -60,5 +60,10 @@ public class Is {
         jsonObject.put("body", body);
 
         return jsonObject;
+    }
+
+    public Is withHeaders(HashMap<String, String> headers) {
+        this.headers = headers;
+        return this;
     }
 }

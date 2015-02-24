@@ -20,4 +20,8 @@ public class Response {
         isList.add(is);
         return this;
     }
+
+    public Is getIs(int index) {
+        return isList.get(index);
+    }
 }

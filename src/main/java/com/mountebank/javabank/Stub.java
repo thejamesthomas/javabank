@@ -8,7 +8,9 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public class Stub {
     @Getter
-    List<Response> responses = newArrayList();
+    private List<Response> responses = newArrayList();
+    @Getter
+    private List<Predicate> predicates = newArrayList();
 
     public Stub withResponse(Response response) {
         responses.clear();
@@ -21,5 +23,18 @@ public class Stub {
         responses.add(response);
 
         return this;
+    }
+
+    public Stub addPredicate(Predicate predicate) {
+        predicates.add(predicate);
+        return this;
+    }
+
+    public Response getResponse(int index) {
+        return responses.get(index);
+    }
+
+    public Predicate getPredicate(int index) {
+        return predicates.get(index);
     }
 }
