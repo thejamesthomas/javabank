@@ -1,6 +1,6 @@
 package com.mountebank.javabank.fluent;
 
-import com.mountebank.javabank.Is;
+import com.mountebank.javabank.core.Is;
 
 import java.util.HashMap;
 

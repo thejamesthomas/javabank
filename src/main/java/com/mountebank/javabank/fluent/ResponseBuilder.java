@@ -1,6 +1,6 @@
 package com.mountebank.javabank.fluent;
 
-import com.mountebank.javabank.Response;
+import com.mountebank.javabank.core.Response;
 
 public class ResponseBuilder implements FluentBuilder {
     private StubBuilder parent;

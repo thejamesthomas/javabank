@@ -1,5 +1,7 @@
-package com.mountebank.javabank;
+package com.mountebank.javabank.imposters.http;
 
+import com.mountebank.javabank.imposters.Imposter;
+import com.mountebank.javabank.core.Stub;
 import lombok.Getter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

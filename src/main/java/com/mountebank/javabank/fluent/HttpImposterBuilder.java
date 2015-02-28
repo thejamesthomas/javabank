@@ -1,6 +1,6 @@
 package com.mountebank.javabank.fluent;
 
-import com.mountebank.javabank.HttpImposter;
+import com.mountebank.javabank.imposters.http.HttpImposter;
 
 import java.util.List;
 

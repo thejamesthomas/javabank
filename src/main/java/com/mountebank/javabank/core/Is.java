@@ -1,4 +1,4 @@
-package com.mountebank.javabank;
+package com.mountebank.javabank.core;
 
 import com.google.common.net.HttpHeaders;
 import lombok.Getter;

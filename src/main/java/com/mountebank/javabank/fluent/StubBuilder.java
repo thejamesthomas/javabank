@@ -1,6 +1,6 @@
 package com.mountebank.javabank.fluent;
 
-import com.mountebank.javabank.Stub;
+import com.mountebank.javabank.core.Stub;
 
 import java.util.List;
 

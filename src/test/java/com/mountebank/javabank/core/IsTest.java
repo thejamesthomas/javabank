@@ -1,9 +1,9 @@
-package com.mountebank.javabank;
+package com.mountebank.javabank.core;
 
 import com.google.common.collect.ImmutableMap;
+import com.mountebank.javabank.core.Is;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
-import org.apache.http.protocol.HTTP;
 import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;

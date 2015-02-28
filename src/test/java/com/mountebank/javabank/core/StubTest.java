@@ -1,5 +1,7 @@
-package com.mountebank.javabank;
+package com.mountebank.javabank.core;
 
+import com.mountebank.javabank.core.Response;
+import com.mountebank.javabank.core.Stub;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,4 +1,4 @@
-package com.mountebank.javabank;
+package com.mountebank.javabank.imposters;
 
 import org.json.simple.JSONObject;
 
