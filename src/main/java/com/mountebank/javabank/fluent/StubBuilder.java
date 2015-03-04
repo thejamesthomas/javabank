@@ -1,4 +1,4 @@
-package com.mountebank.javabank.http.fluent;
+package com.mountebank.javabank.fluent;
 
 import com.mountebank.javabank.http.core.Stub;
 

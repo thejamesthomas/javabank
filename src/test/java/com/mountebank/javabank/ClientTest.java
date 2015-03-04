@@ -1,6 +1,6 @@
 package com.mountebank.javabank;
 
-import com.mountebank.javabank.http.fluent.ImposterBuilder;
+import com.mountebank.javabank.fluent.ImposterBuilder;
 import com.mountebank.javabank.http.imposters.Imposter;
 import org.junit.Before;
 import org.junit.Test;
