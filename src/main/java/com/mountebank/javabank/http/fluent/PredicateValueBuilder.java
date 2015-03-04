@@ -2,7 +2,6 @@ package com.mountebank.javabank.http.fluent;
 
 import com.mountebank.javabank.http.predicates.Predicate;
 import com.mountebank.javabank.http.predicates.PredicateType;
-import lombok.Getter;
 
 public class PredicateValueBuilder implements FluentBuilder {
     private final Predicate predicate;

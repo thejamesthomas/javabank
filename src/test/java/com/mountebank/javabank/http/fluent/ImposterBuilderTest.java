@@ -1,9 +1,9 @@
 package com.mountebank.javabank.http.fluent;
 
 import com.google.common.net.HttpHeaders;
+import com.mountebank.javabank.http.core.Is;
 import com.mountebank.javabank.http.core.Stub;
 import com.mountebank.javabank.http.imposters.Imposter;
-import com.mountebank.javabank.http.core.Is;
 import com.mountebank.javabank.http.predicates.Predicate;
 import com.mountebank.javabank.http.predicates.PredicateType;
 import org.junit.Test;
@@ -133,36 +133,6 @@ public class ImposterBuilderTest {
         assertThat(predicate.getPath()).isEqualTo("/test");
         assertThat(predicate.getQueryParameter("first")).isEqualTo("1");
         assertThat(predicate.getHeader("Content-Type")).isEqualTo("text/plain");
-    }
-
-    @Test
-    public void shouldBlah() {
-        Imposter imposter = ImposterBuilder.anImposter().onPort(4545)
-                .stub()
-//                .response()
-//                    .is()
-//                        .statusCode(201)
-//                        .header("Content-Type", "application/xml")
-//                        .body("Hello World!")
-//                    .end()
-//                .end()
-//                .response().end()
-                .end()
-                .stub()
-//                .response().end()
-//                .predicate()
-//                    .equals()
-//                        .method("POST")
-//                        .path("/test")
-//                        .query("first", "1")
-//                        .query("second", "2")
-//                        .body("hello")
-//                        .caseSensitive(true)
-//                        .except("!$")
-//                    .end()
-//                .end()
-                .end()
-                .build();
     }
 }
 // @formatter:on

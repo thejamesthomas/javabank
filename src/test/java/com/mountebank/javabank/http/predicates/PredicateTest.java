@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import org.json.simple.JSONValue;
 import org.junit.Test;
 
-import static com.google.common.collect.Maps.newHashMap;
 import static com.mountebank.javabank.http.predicates.PredicateType.EQUALS;
 import static org.assertj.core.api.Assertions.assertThat;
 

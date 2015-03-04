@@ -1,8 +1,6 @@
 package com.mountebank.javabank.http.imposters;
 
 import com.mountebank.javabank.http.core.Stub;
-import lombok.Getter;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;

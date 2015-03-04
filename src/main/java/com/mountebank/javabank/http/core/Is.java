@@ -1,7 +1,6 @@
 package com.mountebank.javabank.http.core;
 
 import com.google.common.net.HttpHeaders;
-import lombok.Getter;
 import org.apache.http.HttpStatus;
 import org.json.simple.JSONObject;
 
