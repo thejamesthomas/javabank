@@ -56,6 +56,6 @@ public class Imposter extends HashMap {
     }
 
     public int getPort() {
-        return (int) get(PORT);
+        return (Integer) get(PORT);
     }
 }

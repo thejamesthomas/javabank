@@ -71,7 +71,7 @@ public class Is extends HashMap {
     }
 
     public int getStatusCode() {
-        return (int) this.data.get(STATUS_CODE);
+        return (Integer) this.data.get(STATUS_CODE);
     }
 
     public Map<String, String> getHeaders() {
