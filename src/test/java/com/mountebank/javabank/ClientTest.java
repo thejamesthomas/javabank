@@ -3,11 +3,13 @@ package com.mountebank.javabank;
 import com.mountebank.javabank.fluent.ImposterBuilder;
 import com.mountebank.javabank.http.imposters.Imposter;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
 
+@Ignore
 public class ClientTest {
     @Before
     public void setUp() {
