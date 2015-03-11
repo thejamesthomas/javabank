@@ -2,6 +2,7 @@ package com.mountebank.javabank;
 
 import com.mountebank.javabank.fluent.ImposterBuilder;
 import com.mountebank.javabank.http.imposters.Imposter;
+import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -30,7 +31,8 @@ public class ClientTest {
 
     @Test
     public void shouldCreateAnImposter() {
-        assertThat(Client.createImposter(new ImposterBuilder().onPort(5656).build())).isEqualTo(201);
+        int statusCode = Client.createImposter(new ImposterBuilder().onPort(5656).build());
+        assertThat(statusCode).isEqualTo(201);
     }
 
     @Test
@@ -40,8 +42,9 @@ public class ClientTest {
 
         String response = Client.deleteImposter(5757);
 
-        assertThat(response).contains("5757");
-        assertThat(response).contains("http");
+        assertThat(response)
+                .contains("5757")
+                .contains("http");
     }
 
     @Test
@@ -60,5 +63,30 @@ public class ClientTest {
 
         assertThat(Client.deleteAllImposters()).isEqualTo(200);
         assertThat(Client.getImposterCount()).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldGetAnImposter() throws ParseException {
+        Imposter expectedImposter = new ImposterBuilder()
+            .onPort(6262)
+            .stub()
+                .predicate()
+                    .startsWith()
+                        .body("testing")
+                    .end()
+                .end()
+                .response()
+                    .is()
+                        .body("hello, world")
+                    .end()
+                .end()
+            .end()
+        .build();
+        Client.createImposter(expectedImposter);
+
+        Imposter actualImposter = Client.getImposter(6262);
+
+        assertThat(actualImposter.getPort()).isEqualTo(expectedImposter.getPort());
+//        assertThat(actualImposter.getStubs()).isEqualTo(expectedImposter.getStubs());
     }
 }

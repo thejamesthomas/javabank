@@ -18,6 +18,13 @@ public class Imposter extends HashMap {
         this.put(STUBS, newArrayList());
     }
 
+    public static Imposter fromJSON(JSONObject json) {
+        Imposter imposter = new Imposter();
+        imposter.putAll(json);
+
+        return imposter;
+    }
+
     public static Imposter anImposter() {
         return new Imposter();
     }
@@ -56,6 +63,6 @@ public class Imposter extends HashMap {
     }
 
     public int getPort() {
-        return (Integer) get(PORT);
+        return Integer.valueOf(String.valueOf(get(PORT)));
     }
 }

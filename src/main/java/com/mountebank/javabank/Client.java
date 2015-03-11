@@ -6,6 +6,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mountebank.javabank.http.imposters.Imposter;
 import org.json.JSONArray;
+import org.json.simple.parser.ParseException;
 
 public class Client {
 
@@ -57,6 +58,18 @@ public class Client {
         }
         catch (UnirestException e) {
             return 500;
+        }
+    }
+
+    public static Imposter getImposter(int port) throws ParseException {
+        try {
+            HttpResponse<JsonNode> response = Unirest.get(BASE_URL + "/imposters/" + port).asJson();
+            String responseJson = response.getBody().toString();
+
+            return ImposterParser.parse(responseJson);
+        }
+        catch (UnirestException e) {
+            return null;
         }
     }
 }

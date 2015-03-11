@@ -58,6 +58,7 @@ public class Is extends HashMap {
 
     private JSONObject toJSON() {
         JSONObject jsonObject = new JSONObject();
+        jsonObject.putAll(this);
         return jsonObject;
     }
 
@@ -71,7 +72,7 @@ public class Is extends HashMap {
     }
 
     public int getStatusCode() {
-        return (Integer) this.data.get(STATUS_CODE);
+        return Integer.valueOf(String.valueOf(this.data.get(STATUS_CODE)));
     }
 
     public Map<String, String> getHeaders() {
