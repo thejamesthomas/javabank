@@ -4,9 +4,40 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mountebank</groupId>
+    <groupId>org.mbtest</groupId>
     <artifactId>javabank</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Javabank</name>
+    <description>Native Java bindings for Mountebank</description>
+    <url>http://github.com/thejamesthomas/javabank</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <url>http://github.com/thejamesthomas/javabank/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <scm>
+        <url>http://github.com/thejamesthomas/javabank</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <email>james@duckzilla.com</email>
+            <name>James Thomas</name>
+            <url>https://github.com/thejamesthomas</url>
+            <id>thejamesthomas</id>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
