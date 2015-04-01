@@ -3,3 +3,5 @@
 target/
 *.patch
 *.token
+*.key
+.DS_Store
