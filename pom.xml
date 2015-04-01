@@ -6,7 +6,7 @@
 
     <groupId>org.mbtest.javabank</groupId>
     <artifactId>javabank-all</artifactId>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Javabank</name>
