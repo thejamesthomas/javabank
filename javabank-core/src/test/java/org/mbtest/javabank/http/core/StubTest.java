@@ -1,7 +1,6 @@
 package org.mbtest.javabank.http.core;
 
 import org.junit.Test;
-import org.mbtest.javabank.http.core.Stub;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

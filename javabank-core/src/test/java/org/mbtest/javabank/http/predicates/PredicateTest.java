@@ -3,11 +3,9 @@ package org.mbtest.javabank.http.predicates;
 import com.google.common.collect.ImmutableMap;
 import org.json.simple.JSONValue;
 import org.junit.Test;
-import org.mbtest.javabank.http.predicates.Predicate;
-import org.mbtest.javabank.http.predicates.PredicateType;
 
-import static org.mbtest.javabank.http.predicates.PredicateType.EQUALS;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mbtest.javabank.http.predicates.PredicateType.EQUALS;
 
 public class PredicateTest {
     @Test

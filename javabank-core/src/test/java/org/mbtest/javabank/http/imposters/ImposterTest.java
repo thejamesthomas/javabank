@@ -1,10 +1,10 @@
 package org.mbtest.javabank.http.imposters;
 
-import org.mbtest.javabank.http.core.Stub;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.mbtest.javabank.http.core.Stub;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

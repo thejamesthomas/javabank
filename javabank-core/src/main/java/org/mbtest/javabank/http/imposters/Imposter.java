@@ -1,7 +1,7 @@
 package org.mbtest.javabank.http.imposters;
 
-import org.mbtest.javabank.http.core.Stub;
 import org.json.simple.JSONObject;
+import org.mbtest.javabank.http.core.Stub;
 
 import java.util.HashMap;
 import java.util.List;
