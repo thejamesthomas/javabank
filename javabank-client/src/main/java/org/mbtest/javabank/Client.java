@@ -4,8 +4,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mountebank.javabank.ImposterParser;
-import com.mountebank.javabank.http.imposters.Imposter;
+import org.mbtest.javabank.http.imposters.Imposter;
 import org.json.JSONArray;
 import org.json.simple.parser.ParseException;
 

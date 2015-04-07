@@ -1,7 +1,7 @@
 package org.mbtest.javabank;
 
-import com.mountebank.javabank.fluent.ImposterBuilder;
-import com.mountebank.javabank.http.imposters.Imposter;
+import org.mbtest.javabank.fluent.ImposterBuilder;
+import org.mbtest.javabank.http.imposters.Imposter;
 import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Ignore;
