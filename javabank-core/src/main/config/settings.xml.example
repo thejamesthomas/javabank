@@ -1,0 +1,22 @@
+<!-- This is the format of my local settings.xml file for Maven -->
+<settings>
+    <servers>
+        <server>
+            <id>ossrh</id>
+            <username>${jira.username}</username>
+            <password>${jira.password}</password>
+        </server>
+    </servers>
+    <profiles>
+        <profile>
+            <id>ossrh</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <gpg.executable>gpg</gpg.executable>
+                <gpg.passphrase>${gpg.passphrase}</gpg.passphrase>
+            </properties>
+        </profile>
+    </profiles>
+</settings>

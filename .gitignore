@@ -4,4 +4,5 @@ target/
 *.patch
 *.token
 *.key
+*.versionsBackup
 .DS_Store
