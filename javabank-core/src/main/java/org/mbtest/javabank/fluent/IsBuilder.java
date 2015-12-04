@@ -2,6 +2,9 @@ package org.mbtest.javabank.fluent;
 
 import org.mbtest.javabank.http.core.Is;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 
 import static com.google.common.collect.Maps.newHashMap;
@@ -10,6 +13,7 @@ public class IsBuilder implements FluentBuilder {
     private ResponseBuilder parent;
     private int statusCode = 200;
     private String body = "";
+    private File bodyFile;
     private final HashMap<String, String> headers = newHashMap();
 
     public IsBuilder(ResponseBuilder responseBuilder) {
@@ -31,11 +35,26 @@ public class IsBuilder implements FluentBuilder {
         return this;
     }
 
+    public IsBuilder body(File body) {
+        this.bodyFile = body;
+        return this;
+    }
+
     public ResponseBuilder end() {
         return parent;
     }
 
     protected Is build() {
+
+        if (this.bodyFile != null) {
+            try {
+                byte[] bytes = Files.readAllBytes(this.bodyFile.toPath());
+                this.body = new String(bytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         Is is = new Is().withStatusCode(statusCode).withHeaders(headers).withBody(body);
         return is;
     }
