@@ -68,6 +68,7 @@ public class Is extends HashMap {
 
     public Is withHeaders(HashMap<String, String> headers) {
         this.headers = headers;
+        this.data.put(HEADERS, headers);  // issue #5
         return this;
     }
 
