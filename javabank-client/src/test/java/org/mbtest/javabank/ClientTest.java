@@ -12,35 +12,43 @@ import static org.assertj.core.api.Fail.fail;
 
 @Ignore
 public class ClientTest {
+
+    private static final Client client = new Client();
+
     @Before
     public void setUp() {
         assertThatMountebankIsRunning();
-        Client.deleteAllImposters();
+        client.deleteAllImposters();
     }
 
     private void assertThatMountebankIsRunning() {
-        if(!Client.isMountebankRunning()) {
+        if(!client.isMountebankRunning()) {
             fail("Mountebank is not running!");
         }
     }
 
     @Test
+    public void shouldUseDefaultBaseUrlForDefaultConstructor() {
+        assertThat(client.getBaseUrl()).isEqualTo(Client.DEFAULT_BASE_URL);
+    }
+
+    @Test
     public void shouldVerifyMountebankIsRunning() {
-        assertThat(Client.isMountebankRunning()).isEqualTo(true);
+        assertThat(client.isMountebankRunning()).isEqualTo(true);
     }
 
     @Test
     public void shouldCreateAnImposter() {
-        int statusCode = Client.createImposter(new ImposterBuilder().onPort(5656).build());
+        int statusCode = client.createImposter(new ImposterBuilder().onPort(5656).build());
         assertThat(statusCode).isEqualTo(201);
     }
 
     @Test
     public void shouldDeleteAnImposter() {
         Imposter imposter = new ImposterBuilder().onPort(5757).build();
-        Client.createImposter(imposter);
+        client.createImposter(imposter);
 
-        String response = Client.deleteImposter(5757);
+        String response = client.deleteImposter(5757);
 
         assertThat(response)
                 .contains("5757")
@@ -49,20 +57,20 @@ public class ClientTest {
 
     @Test
     public void shouldCountTheNumberOfImposters() {
-        Client.createImposter(new ImposterBuilder().onPort(5858).build());
-        Client.createImposter(new ImposterBuilder().onPort(5959).build());
-        Client.createImposter(new ImposterBuilder().onPort(6060).build());
+        client.createImposter(new ImposterBuilder().onPort(5858).build());
+        client.createImposter(new ImposterBuilder().onPort(5959).build());
+        client.createImposter(new ImposterBuilder().onPort(6060).build());
 
-        assertThat(Client.getImposterCount()).isEqualTo(3);
+        assertThat(client.getImposterCount()).isEqualTo(3);
     }
 
     @Test
     public void shouldDeleteAllImposters() {
-        Client.createImposter(new ImposterBuilder().onPort(6060).build());
-        Client.createImposter(new ImposterBuilder().onPort(6161).build());
+        client.createImposter(new ImposterBuilder().onPort(6060).build());
+        client.createImposter(new ImposterBuilder().onPort(6161).build());
 
-        assertThat(Client.deleteAllImposters()).isEqualTo(200);
-        assertThat(Client.getImposterCount()).isEqualTo(0);
+        assertThat(client.deleteAllImposters()).isEqualTo(200);
+        assertThat(client.getImposterCount()).isEqualTo(0);
     }
 
     @Test
@@ -82,9 +90,9 @@ public class ClientTest {
                 .end()
             .end()
         .build();
-        Client.createImposter(expectedImposter);
+        client.createImposter(expectedImposter);
 
-        Imposter actualImposter = Client.getImposter(6262);
+        Imposter actualImposter = client.getImposter(6262);
 
         assertThat(actualImposter.getPort()).isEqualTo(expectedImposter.getPort());
 //        assertThat(actualImposter.getStubs()).isEqualTo(expectedImposter.getStubs());
