@@ -10,20 +10,38 @@ import org.json.simple.parser.ParseException;
 
 public class Client {
 
-    public static final String BASE_URL = "http://localhost:2525";
+    static final String DEFAULT_BASE_URL = "http://localhost:2525";
 
-    public static boolean isMountebankRunning() {
+    protected String baseUrl;
+
+    public Client() {
+        this(DEFAULT_BASE_URL);
+    }
+
+    public Client(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
+    public Client(String host, int port) {
+        this.baseUrl = String.format("http://%s:%i", host, port);
+    }
+
+    public String getBaseUrl(){
+        return baseUrl;
+    }
+
+    public boolean isMountebankRunning() {
         try {
-            HttpResponse<JsonNode> response = Unirest.get(BASE_URL).asJson();
+            HttpResponse<JsonNode> response = Unirest.get(baseUrl).asJson();
             return response.getStatus() == 200;
         } catch (UnirestException e) {
             return false;
         }
     }
 
-    public static int createImposter(Imposter imposter) {
+    public int createImposter(Imposter imposter) {
         try {
-            HttpResponse<JsonNode> response = Unirest.post(BASE_URL + "/imposters").body(imposter.toString()).asJson();
+            HttpResponse<JsonNode> response = Unirest.post(baseUrl + "/imposters").body(imposter.toString()).asJson();
             return response.getStatus();
         }
         catch (UnirestException e) {
@@ -31,9 +49,9 @@ public class Client {
         }
     }
 
-    public static String deleteImposter(int port) {
+    public String deleteImposter(int port) {
         try {
-            HttpResponse<JsonNode> response = Unirest.delete(BASE_URL + "/imposters/" + port).asJson();
+            HttpResponse<JsonNode> response = Unirest.delete(baseUrl + "/imposters/" + port).asJson();
             return response.getBody().toString();
         }
         catch (UnirestException e) {
@@ -41,9 +59,9 @@ public class Client {
         }
     }
 
-    public static int getImposterCount() {
+    public int getImposterCount() {
         try {
-            HttpResponse<JsonNode> response = Unirest.get(BASE_URL + "/imposters").asJson();
+            HttpResponse<JsonNode> response = Unirest.get(baseUrl + "/imposters").asJson();
             return ((JSONArray)response.getBody().getObject().get("imposters")).length();
         }
         catch (UnirestException e) {
@@ -51,9 +69,9 @@ public class Client {
         }
     }
 
-    public static int deleteAllImposters() {
+    public int deleteAllImposters() {
         try {
-            HttpResponse<JsonNode> response = Unirest.delete(BASE_URL + "/imposters").asJson();
+            HttpResponse<JsonNode> response = Unirest.delete(baseUrl + "/imposters").asJson();
             return response.getStatus();
         }
         catch (UnirestException e) {
@@ -61,9 +79,9 @@ public class Client {
         }
     }
 
-    public static Imposter getImposter(int port) throws ParseException {
+    public Imposter getImposter(int port) throws ParseException {
         try {
-            HttpResponse<JsonNode> response = Unirest.get(BASE_URL + "/imposters/" + port).asJson();
+            HttpResponse<JsonNode> response = Unirest.get(baseUrl + "/imposters/" + port).asJson();
             String responseJson = response.getBody().toString();
 
             return ImposterParser.parse(responseJson);
