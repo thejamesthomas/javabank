@@ -1,6 +1,10 @@
 .idea/
-*.iml
+.gradle/
 target/
+build/
+*.iml
+*.imr
+*.iws
 *.patch
 *.token
 *.key

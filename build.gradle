@@ -1,0 +1,80 @@
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'signing'
+    apply plugin: 'maven'
+
+    group = 'org.mbtest.javabank'
+    version = '0.4-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc
+    }
+
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    artifacts {
+        archives jar, javadocJar, sourcesJar
+    }
+
+    signing {
+        sign configurations.archives
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                pom.project {
+                    name project.name
+                    packaging 'jar'
+                    description 'Native Java bindings for Mountebank'
+                    url 'http://github.com/thejamesthomas/javabank'
+
+                    scm {
+                        url 'https://www.github.com/thejamesthomas/javabank'
+                    }
+
+                    licenses {
+                        license {
+                            name 'The MIT License (MIT)'
+                            url 'http://opensource.org/licenses/MIT'
+                            distribution 'repo'
+                        }
+                    }
+
+                    issueManagement {
+                        url 'http://github.com/thejamesthomas/javabank/issues'
+                        system 'GitHub Issues'
+                    }
+
+                    developers {
+                        developer {
+                            id 'thejamesthomas'
+                            name 'James Thomas'
+                            url 'https://github.com/thejamesthomas'
+                            email 'james@duckzilla.com'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
