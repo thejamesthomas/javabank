@@ -5,7 +5,7 @@ allprojects {
     apply plugin: 'maven'
 
     group = 'org.mbtest.javabank'
-    version = '0.4-SNAPSHOT'
+    version = "${majorVersion}.${minorVersion}.${patchVersion}"
 
     repositories {
         mavenCentral()
