@@ -6,6 +6,7 @@ import org.apache.http.HttpStatus;
 import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.mbtest.javabank.fluent.IsBuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -62,6 +63,19 @@ public class IsTest {
         Is is = new Is().withBody(expectedBody);
 
         assertThat(is.getBody()).isEqualTo(expectedBody);
+    }
+
+    @Test
+    public void shouldSetTheMode(){
+        Is is = new Is().withMode("binary");
+        assertThat(is.getMode()).isEqualTo("binary");
+    }
+
+    @Test
+    public void shouldNotSetAModeByDefault() throws Exception {
+        Is is = new Is();
+        assertThat(is.getMode()).isNull();
+        assertThat(is.getJSON().containsKey(Is.MODE)).isFalse();
     }
 
     @Test
