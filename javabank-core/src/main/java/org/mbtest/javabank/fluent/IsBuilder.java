@@ -13,6 +13,7 @@ public class IsBuilder implements FluentBuilder {
     private ResponseBuilder parent;
     private int statusCode = 200;
     private String body = "";
+    private String mode;
     private File bodyFile;
     private final HashMap<String, String> headers = newHashMap();
 
@@ -40,6 +41,11 @@ public class IsBuilder implements FluentBuilder {
         return this;
     }
 
+    public IsBuilder mode(String mode){
+        this.mode = mode;
+        return this;
+    }
+
     public ResponseBuilder end() {
         return parent;
     }
@@ -55,7 +61,7 @@ public class IsBuilder implements FluentBuilder {
             }
         }
 
-        Is is = new Is().withStatusCode(statusCode).withHeaders(headers).withBody(body);
+        Is is = new Is().withStatusCode(statusCode).withHeaders(headers).withBody(body).withMode(mode);
         return is;
     }
 }

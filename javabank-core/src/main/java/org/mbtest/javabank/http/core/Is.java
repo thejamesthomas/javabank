@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.google.common.collect.Maps.newHashMap;
 
@@ -14,6 +15,7 @@ public class Is extends HashMap {
     public static final String HEADERS = "headers";
     public static final String BODY = "body";
     public static final String STATUS_CODE = "statusCode";
+    public static final String MODE = "_mode";
 
     private final HashMap<String, Object> data;
     private HashMap<String, String> headers;
@@ -52,6 +54,13 @@ public class Is extends HashMap {
         return this;
     }
 
+    public Is withMode(String mode){
+        if(!Objects.isNull(mode)) {
+            this.data.put(MODE, mode);
+        }
+        return this;
+    }
+
     public String toString() {
         return toJSON().toJSONString();
     }
@@ -82,5 +91,9 @@ public class Is extends HashMap {
 
     public String getBody() {
         return (String) this.data.get(BODY);
+    }
+
+    public String getMode() {
+        return (String) this.data.get(MODE);
     }
 }
