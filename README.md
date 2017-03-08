@@ -33,5 +33,5 @@ If you also need a REST client to talk to Mountebank, you can include the javaba
 ```
 #### Gradle
 ```
-compile 'org.mbtest.javabank:javabank-client:0.4.7'
+compile 'org.mbtest.javabank:javabank-client:0.4.9'
 ```
