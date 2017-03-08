@@ -28,7 +28,7 @@ If you also need a REST client to talk to Mountebank, you can include the javaba
 <dependency>
     <groupId>org.mbtest.javabank</groupId>
     <artifactId>javabank-client</artifactId>
-    <version>0.4.7</version>
+    <version>0.4.9</version>
 </dependency>
 ```
 #### Gradle
