@@ -45,6 +45,7 @@ public class IsBuilder extends AbstractResponseBuilder {
         return this;
     }
 
+    @Override
     protected Is build() {
 
         if (this.bodyFile != null) {

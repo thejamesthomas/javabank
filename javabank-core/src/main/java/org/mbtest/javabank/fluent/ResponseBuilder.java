@@ -11,9 +11,13 @@ public class ResponseBuilder implements FluentBuilder {
     }
 
     public IsBuilder is() {
-        IsBuilder isBuilder = new IsBuilder(this);
-        builder = isBuilder;
-        return isBuilder;
+        builder = new IsBuilder(this);
+        return (IsBuilder) builder;
+    }
+
+    public InjectBuilder inject() {
+        builder = new InjectBuilder(this);
+        return (InjectBuilder) builder;
     }
 
     @Override

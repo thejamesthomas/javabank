@@ -47,4 +47,13 @@ public class ResponseBuilderTest {
 
         assertThat(responseBuilder.build(), is(expectedIs));
     }
+
+    @Test
+    public void shouldBuildAnInject() throws Exception {
+        InjectBuilder injectBuilder = responseBuilder.inject();
+        injectBuilder.function("some function");
+        HashMap expectedInject = injectBuilder.build();
+
+        assertThat(responseBuilder.build(), is(expectedInject));
+    }
 }
