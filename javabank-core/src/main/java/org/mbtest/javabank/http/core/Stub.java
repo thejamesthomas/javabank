@@ -2,6 +2,7 @@ package org.mbtest.javabank.http.core;
 
 import org.mbtest.javabank.http.predicates.Predicate;
 import org.mbtest.javabank.http.responses.Is;
+import org.mbtest.javabank.http.responses.Response;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Stub extends HashMap {
         return this;
     }
 
-    public Stub addResponse(HashMap response) {
+    public Stub addResponse(Response response) {
         getResponses().add(response);
 
         return this;
@@ -36,8 +37,8 @@ public class Stub extends HashMap {
         return this;
     }
 
-    public List<HashMap> getResponses() {
-        return (List<HashMap>) this.get(RESPONSES);
+    public List<Response> getResponses() {
+        return (List<Response>) this.get(RESPONSES);
     }
 
     public List<Predicate> getPredicates() {

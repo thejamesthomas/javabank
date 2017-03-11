@@ -1,6 +1,6 @@
 package org.mbtest.javabank.fluent;
 
-import java.util.HashMap;
+import org.mbtest.javabank.http.responses.Response;
 
 public class ResponseBuilder implements FluentBuilder {
     private StubBuilder parent;
@@ -25,7 +25,7 @@ public class ResponseBuilder implements FluentBuilder {
         return parent;
     }
 
-    protected HashMap build() {
+    protected Response build() {
         if(builder != null) return builder.build();
 
         return new IsBuilder(this).build();
