@@ -1,17 +1,18 @@
 package org.mbtest.javabank.fluent;
 
-import org.mbtest.javabank.http.core.Is;
+import java.util.HashMap;
 
 public class ResponseBuilder implements FluentBuilder {
     private StubBuilder parent;
-    private IsBuilder isBuilder;
+    private AbstractResponseBuilder builder;
 
     protected ResponseBuilder(StubBuilder stubBuilder) {
         this.parent = stubBuilder;
     }
 
     public IsBuilder is() {
-        isBuilder = new IsBuilder(this);
+        IsBuilder isBuilder = new IsBuilder(this);
+        builder = isBuilder;
         return isBuilder;
     }
 
@@ -20,8 +21,8 @@ public class ResponseBuilder implements FluentBuilder {
         return parent;
     }
 
-    protected Is build() {
-        if(isBuilder != null) return isBuilder.build();
+    protected HashMap build() {
+        if(builder != null) return builder.build();
 
         return new IsBuilder(this).build();
     }

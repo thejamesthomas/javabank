@@ -46,7 +46,7 @@ public class ImposterBuilderTest {
             .end()
         .build();
 
-        Is actualIs = imposter.getStub(0).getResponse(0);
+        Is actualIs = (Is)imposter.getStub(0).getResponse(0);
 
         assertThat(actualIs.getBody()).isEqualTo(expectedBody);
         assertThat(actualIs.getStatusCode()).isEqualTo(expectedStatusCode);

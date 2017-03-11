@@ -24,7 +24,7 @@ public class Stub extends HashMap {
         return this;
     }
 
-    public Stub addResponse(Is response) {
+    public Stub addResponse(HashMap response) {
         getResponses().add(response);
 
         return this;
@@ -35,15 +35,15 @@ public class Stub extends HashMap {
         return this;
     }
 
-    public List<Is> getResponses() {
-        return (List<Is>) this.get(RESPONSES);
+    public List<HashMap> getResponses() {
+        return (List<HashMap>) this.get(RESPONSES);
     }
 
     public List<Predicate> getPredicates() {
         return (List<Predicate>) this.get(PREDICATES);
     }
 
-    public Is getResponse(int index) {
+    public HashMap getResponse(int index) {
         return getResponses().get(index);
     }
 

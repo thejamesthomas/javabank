@@ -9,8 +9,7 @@ import java.util.HashMap;
 
 import static com.google.common.collect.Maps.newHashMap;
 
-public class IsBuilder implements FluentBuilder {
-    private ResponseBuilder parent;
+public class IsBuilder extends AbstractResponseBuilder {
     private int statusCode = 200;
     private String body = "";
     private String mode;
@@ -18,7 +17,7 @@ public class IsBuilder implements FluentBuilder {
     private final HashMap<String, String> headers = newHashMap();
 
     public IsBuilder(ResponseBuilder responseBuilder) {
-        this.parent = responseBuilder;
+        super(responseBuilder);
     }
 
     public IsBuilder statusCode(int statusCode) {
@@ -46,10 +45,6 @@ public class IsBuilder implements FluentBuilder {
         return this;
     }
 
-    public ResponseBuilder end() {
-        return parent;
-    }
-
     protected Is build() {
 
         if (this.bodyFile != null) {
@@ -61,7 +56,10 @@ public class IsBuilder implements FluentBuilder {
             }
         }
 
-        Is is = new Is().withStatusCode(statusCode).withHeaders(headers).withBody(body).withMode(mode);
-        return is;
+        return new Is()
+                .withStatusCode(statusCode)
+                .withHeaders(headers)
+                .withBody(body)
+                .withMode(mode);
     }
 }
