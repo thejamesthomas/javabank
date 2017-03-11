@@ -6,8 +6,8 @@ import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.mbtest.javabank.fluent.ImposterBuilder;
-import org.mbtest.javabank.http.core.Is;
 import org.mbtest.javabank.http.core.Stub;
+import org.mbtest.javabank.http.responses.Is;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

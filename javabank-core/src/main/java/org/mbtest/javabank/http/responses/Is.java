@@ -1,4 +1,4 @@
-package org.mbtest.javabank.http.core;
+package org.mbtest.javabank.http.responses;
 
 import com.google.common.net.HttpHeaders;
 import org.apache.http.HttpStatus;

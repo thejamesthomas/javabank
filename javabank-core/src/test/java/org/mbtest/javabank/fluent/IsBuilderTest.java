@@ -1,7 +1,7 @@
 package org.mbtest.javabank.fluent;
 
 import org.junit.Test;
-import org.mbtest.javabank.http.core.Is;
+import org.mbtest.javabank.http.responses.Is;
 
 import java.io.File;
 

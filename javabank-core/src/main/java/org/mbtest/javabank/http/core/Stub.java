@@ -1,6 +1,7 @@
 package org.mbtest.javabank.http.core;
 
 import org.mbtest.javabank.http.predicates.Predicate;
+import org.mbtest.javabank.http.responses.Is;
 
 import java.util.HashMap;
 import java.util.List;
