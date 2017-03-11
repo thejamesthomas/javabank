@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class ResponseBuilder implements FluentBuilder {
     private StubBuilder parent;
-    private AbstractResponseBuilder builder;
+    private ResponseTypeBuilder builder;
 
     protected ResponseBuilder(StubBuilder stubBuilder) {
         this.parent = stubBuilder;

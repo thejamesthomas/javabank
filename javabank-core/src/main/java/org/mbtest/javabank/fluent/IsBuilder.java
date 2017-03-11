@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 import static com.google.common.collect.Maps.newHashMap;
 
-public class IsBuilder extends AbstractResponseBuilder {
+public class IsBuilder extends ResponseTypeBuilder {
     private int statusCode = 200;
     private String body = "";
     private String mode;

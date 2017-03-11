@@ -2,7 +2,7 @@ package org.mbtest.javabank.fluent;
 
 import org.mbtest.javabank.http.responses.Inject;
 
-public class InjectBuilder extends AbstractResponseBuilder {
+public class InjectBuilder extends ResponseTypeBuilder {
     private String function = "";
 
     public InjectBuilder(ResponseBuilder responseBuilder) {
