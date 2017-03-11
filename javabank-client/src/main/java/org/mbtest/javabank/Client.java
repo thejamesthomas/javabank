@@ -4,9 +4,9 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.mbtest.javabank.http.imposters.Imposter;
 import org.json.JSONArray;
 import org.json.simple.parser.ParseException;
+import org.mbtest.javabank.http.imposters.Imposter;
 
 public class Client {
 
@@ -34,6 +34,15 @@ public class Client {
         try {
             HttpResponse<JsonNode> response = Unirest.get(baseUrl).asJson();
             return response.getStatus() == 200;
+        } catch (UnirestException e) {
+            return false;
+        }
+    }
+
+    public boolean isMountebankAllowingInjection() {
+        try {
+            HttpResponse<JsonNode> response = Unirest.get(baseUrl + "/config").asJson();
+            return response.getBody().getObject().getJSONObject("options").getBoolean("allowInjection");
         } catch (UnirestException e) {
             return false;
         }
