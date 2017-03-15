@@ -1,6 +1,6 @@
 package org.mbtest.javabank.fluent;
 
-import org.mbtest.javabank.http.core.Is;
+import org.mbtest.javabank.http.responses.Is;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,8 +9,7 @@ import java.util.HashMap;
 
 import static com.google.common.collect.Maps.newHashMap;
 
-public class IsBuilder implements FluentBuilder {
-    private ResponseBuilder parent;
+public class IsBuilder extends ResponseTypeBuilder {
     private int statusCode = 200;
     private String body = "";
     private String mode;
@@ -18,7 +17,7 @@ public class IsBuilder implements FluentBuilder {
     private final HashMap<String, String> headers = newHashMap();
 
     public IsBuilder(ResponseBuilder responseBuilder) {
-        this.parent = responseBuilder;
+        super(responseBuilder);
     }
 
     public IsBuilder statusCode(int statusCode) {
@@ -46,10 +45,7 @@ public class IsBuilder implements FluentBuilder {
         return this;
     }
 
-    public ResponseBuilder end() {
-        return parent;
-    }
-
+    @Override
     protected Is build() {
 
         if (this.bodyFile != null) {
@@ -61,7 +57,10 @@ public class IsBuilder implements FluentBuilder {
             }
         }
 
-        Is is = new Is().withStatusCode(statusCode).withHeaders(headers).withBody(body).withMode(mode);
-        return is;
+        return new Is()
+                .withStatusCode(statusCode)
+                .withHeaders(headers)
+                .withBody(body)
+                .withMode(mode);
     }
 }

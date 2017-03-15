@@ -1,8 +1,7 @@
-package org.mbtest.javabank.http.core;
+package org.mbtest.javabank.http.responses;
 
 import com.google.common.net.HttpHeaders;
 import org.apache.http.HttpStatus;
-import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +9,7 @@ import java.util.Objects;
 
 import static com.google.common.collect.Maps.newHashMap;
 
-public class Is extends HashMap {
+public class Is extends Response {
     public static final String IS = "is";
     public static final String HEADERS = "headers";
     public static final String BODY = "body";
@@ -59,20 +58,6 @@ public class Is extends HashMap {
             this.data.put(MODE, mode);
         }
         return this;
-    }
-
-    public String toString() {
-        return toJSON().toJSONString();
-    }
-
-    private JSONObject toJSON() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.putAll(this);
-        return jsonObject;
-    }
-
-    public JSONObject getJSON() {
-        return new JSONObject(this);
     }
 
     public Is withHeaders(HashMap<String, String> headers) {

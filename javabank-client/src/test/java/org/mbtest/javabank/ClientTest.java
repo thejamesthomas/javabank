@@ -1,11 +1,11 @@
 package org.mbtest.javabank;
 
-import org.mbtest.javabank.fluent.ImposterBuilder;
-import org.mbtest.javabank.http.imposters.Imposter;
 import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.mbtest.javabank.fluent.ImposterBuilder;
+import org.mbtest.javabank.http.imposters.Imposter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.fail;
@@ -96,5 +96,32 @@ public class ClientTest {
 
         assertThat(actualImposter.getPort()).isEqualTo(expectedImposter.getPort());
 //        assertThat(actualImposter.getStubs()).isEqualTo(expectedImposter.getStubs());
+    }
+
+    private void assertThatMountebankAllowsInjection() {
+        if(!client.isMountebankAllowingInjection()) {
+            fail("Mountebank is not running with --allowInjection!");
+        }
+    }
+
+    @Test
+    public void shouldCreateAnImposterWithAnInjectedResponse() throws Exception {
+        assertThatMountebankAllowsInjection();
+        String injection = "function(request, logger) { return { body: \"great success!\" }; }";
+        Imposter expectedImposter = new ImposterBuilder()
+            .onPort(1234)
+            .stub()
+                .response()
+                    .inject()
+                        .function(injection)
+                    .end()
+                .end()
+            .end()
+        .build();
+        client.createImposter(expectedImposter);
+
+        Imposter actualImposter = client.getImposter(1234);
+
+        assertThat(actualImposter.getPort()).isEqualTo(expectedImposter.getPort());
     }
 }

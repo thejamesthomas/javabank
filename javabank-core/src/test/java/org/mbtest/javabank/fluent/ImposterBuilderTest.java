@@ -2,11 +2,11 @@ package org.mbtest.javabank.fluent;
 
 import com.google.common.net.HttpHeaders;
 import org.junit.Test;
-import org.mbtest.javabank.http.core.Is;
 import org.mbtest.javabank.http.core.Stub;
 import org.mbtest.javabank.http.imposters.Imposter;
 import org.mbtest.javabank.http.predicates.Predicate;
 import org.mbtest.javabank.http.predicates.PredicateType;
+import org.mbtest.javabank.http.responses.Is;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,7 +46,7 @@ public class ImposterBuilderTest {
             .end()
         .build();
 
-        Is actualIs = imposter.getStub(0).getResponse(0);
+        Is actualIs = (Is)imposter.getStub(0).getResponse(0);
 
         assertThat(actualIs.getBody()).isEqualTo(expectedBody);
         assertThat(actualIs.getStatusCode()).isEqualTo(expectedStatusCode);
