@@ -1,4 +1,4 @@
-# javabank [![Build Status](https://snap-ci.com/thejamesthomas/javabank/branch/master/build_image)](https://snap-ci.com/thejamesthomas/javabank/branch/master)
+# javabank [![Build Status](https://travis-ci.org/thejamesthomas/javabank.svg?branch=master)](https://travis-ci.org/thejamesthomas/javabank)
 Native Java bindings for Mountebank
 
 ## Project Status
