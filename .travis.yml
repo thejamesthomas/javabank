@@ -1,0 +1,8 @@
+language: java
+
+script:
+- ./gradlew build
+- ./gradlew test
+- ./gradlew uploadArchives -PossrhUsername=${OSSRH_USERNAME} -PossrhPassword=${OSSRH_PASSWORD}
+- ./increment_version.sh
+

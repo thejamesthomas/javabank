@@ -7,6 +7,14 @@ allprojects {
     group = 'org.mbtest.javabank'
     version = "${majorVersion}.${minorVersion}.${patchVersion}"
 
+    if (!project.hasProperty("ossrhUsername")) {
+        ext.ossrhUsername = ""
+    }
+
+    if (!project.hasProperty("ossrhPassword")) {
+        ext.ossrhPassword = ""
+    }
+
     repositories {
         mavenCentral()
     }
@@ -26,6 +34,7 @@ allprojects {
     }
 
     signing {
+        required { gradle.taskGraph.hasTask("uploadArchives") }
         sign configurations.archives
     }
 
