@@ -1,12 +1,13 @@
 package org.mbtest.javabank;
 
+import org.json.JSONArray;
+import org.json.simple.parser.ParseException;
+import org.mbtest.javabank.http.imposters.Imposter;
+
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.json.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.mbtest.javabank.http.imposters.Imposter;
 
 public class Client {
 
@@ -23,10 +24,10 @@ public class Client {
     }
 
     public Client(String host, int port) {
-        this.baseUrl = String.format("http://%s:%i", host, port);
+        this.baseUrl = String.format("http://%s:%d", host, port);
     }
 
-    public String getBaseUrl(){
+    public String getBaseUrl() {
         return baseUrl;
     }
 
@@ -52,8 +53,7 @@ public class Client {
         try {
             HttpResponse<JsonNode> response = Unirest.post(baseUrl + "/imposters").body(imposter.toString()).asJson();
             return response.getStatus();
-        }
-        catch (UnirestException e) {
+        } catch (UnirestException e) {
             return 500;
         }
     }
@@ -62,8 +62,7 @@ public class Client {
         try {
             HttpResponse<JsonNode> response = Unirest.delete(baseUrl + "/imposters/" + port).asJson();
             return response.getBody().toString();
-        }
-        catch (UnirestException e) {
+        } catch (UnirestException e) {
             return null;
         }
     }
@@ -71,9 +70,8 @@ public class Client {
     public int getImposterCount() {
         try {
             HttpResponse<JsonNode> response = Unirest.get(baseUrl + "/imposters").asJson();
-            return ((JSONArray)response.getBody().getObject().get("imposters")).length();
-        }
-        catch (UnirestException e) {
+            return ((JSONArray) response.getBody().getObject().get("imposters")).length();
+        } catch (UnirestException e) {
             return -1;
         }
     }
@@ -82,8 +80,7 @@ public class Client {
         try {
             HttpResponse<JsonNode> response = Unirest.delete(baseUrl + "/imposters").asJson();
             return response.getStatus();
-        }
-        catch (UnirestException e) {
+        } catch (UnirestException e) {
             return 500;
         }
     }
@@ -94,8 +91,7 @@ public class Client {
             String responseJson = response.getBody().toString();
 
             return ImposterParser.parse(responseJson);
-        }
-        catch (UnirestException e) {
+        } catch (UnirestException e) {
             return null;
         }
     }
