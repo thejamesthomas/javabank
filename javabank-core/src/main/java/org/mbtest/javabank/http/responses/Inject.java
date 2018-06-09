@@ -1,7 +1,7 @@
 package org.mbtest.javabank.http.responses;
 
 public class Inject extends Response {
-    public static final String INJECT = "inject";
+    private static final String INJECT = "inject";
 
     public Inject() {
         this.put(INJECT, "");

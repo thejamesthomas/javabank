@@ -11,8 +11,8 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public class Stub extends HashMap {
 
-    public static final String RESPONSES = "responses";
-    public static final String PREDICATES = "predicates";
+    private static final String RESPONSES = "responses";
+    private static final String PREDICATES = "predicates";
 
     public Stub() {
         this.put(RESPONSES, newArrayList());

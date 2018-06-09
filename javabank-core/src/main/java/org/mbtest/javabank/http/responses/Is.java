@@ -10,14 +10,14 @@ import java.util.Objects;
 import static com.google.common.collect.Maps.newHashMap;
 
 public class Is extends Response {
-    public static final String IS = "is";
-    public static final String HEADERS = "headers";
-    public static final String BODY = "body";
-    public static final String STATUS_CODE = "statusCode";
+    private static final String IS = "is";
+    private static final String HEADERS = "headers";
+    private static final String BODY = "body";
+    private static final String STATUS_CODE = "statusCode";
     public static final String MODE = "_mode";
 
-    private final HashMap<String, Object> data;
-    private HashMap<String, String> headers;
+    private final Map<String, Object> data;
+    private Map<String, String> headers;
 
     public Is() {
         headers = newHashMap();
@@ -60,7 +60,7 @@ public class Is extends Response {
         return this;
     }
 
-    public Is withHeaders(HashMap<String, String> headers) {
+    public Is withHeaders(Map<String, String> headers) {
         this.headers = headers;
         this.data.put(HEADERS, headers);  // issue #5
         return this;
