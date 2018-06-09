@@ -91,6 +91,7 @@ public class ImposterBuilderTest {
                     .equals().body("test").end()
                     .contains().path("testing").end()
                     .startsWith().query("one","two").end()
+                    .not().query("hola", "hmmm").end()
                 .end()
             .end()
         .build();
@@ -99,6 +100,7 @@ public class ImposterBuilderTest {
         Predicate firstPredicate = stub.getPredicate(0);
         Predicate secondPredicate = stub.getPredicate(1);
         Predicate thirdPredicate = stub.getPredicate(2);
+        Predicate fourthPredicate = stub.getPredicate(3);
 
         assertThat(firstPredicate.getType()).isEqualTo(PredicateType.EQUALS.getValue());
         assertThat(firstPredicate.getBody()).isEqualTo("test");
@@ -108,6 +110,9 @@ public class ImposterBuilderTest {
 
         assertThat(thirdPredicate.getType()).isEqualTo(PredicateType.STARTS_WITH.getValue());
         assertThat(thirdPredicate.getQueryParameter("one")).isEqualTo("two");
+
+        assertThat(fourthPredicate.getType()).isEqualTo(PredicateType.NOT.getValue());
+        assertThat(fourthPredicate.getQueryParameter("hola")).isEqualTo("hmmm");
     }
 
     @Test
