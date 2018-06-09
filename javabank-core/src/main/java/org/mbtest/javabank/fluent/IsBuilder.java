@@ -5,7 +5,7 @@ import org.mbtest.javabank.http.responses.Is;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.HashMap;
+import java.util.Map;
 
 import static com.google.common.collect.Maps.newHashMap;
 
@@ -14,7 +14,7 @@ public class IsBuilder extends ResponseTypeBuilder {
     private String body = "";
     private String mode;
     private File bodyFile;
-    private final HashMap<String, String> headers = newHashMap();
+    private final Map<String, String> headers = newHashMap();
 
     public IsBuilder(ResponseBuilder responseBuilder) {
         super(responseBuilder);
