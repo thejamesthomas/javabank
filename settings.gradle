@@ -1,2 +1,3 @@
 rootProject.name = 'javabank-all'
-include ':javabank-client', ':javabank-core'
+
+include 'javabank-client', 'javabank-core'
