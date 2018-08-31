@@ -1,8 +1,8 @@
 allprojects {
     apply plugin: 'idea'
-    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
     apply plugin: 'signing'
-    apply plugin: 'maven'
 
     group = 'org.mbtest.javabank'
     version = "${majorVersion}.${minorVersion}.${patchVersion}"
@@ -33,57 +33,64 @@ allprojects {
         archives jar, javadocJar, sourcesJar
     }
 
-    signing {
-        required { gradle.taskGraph.hasTask("uploadArchives") }
-        sign configurations.archives
-    }
-
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                    authentication(userName: ossrhUsername, password: ossrhPassword)
-                }
-
-                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                    authentication(userName: ossrhUsername, password: ossrhPassword)
-                }
-
-                pom.project {
-                    name project.name
-                    packaging 'jar'
-                    description 'Native Java bindings for Mountebank'
-                    url 'http://github.com/thejamesthomas/javabank'
-
-                    scm {
-                        url 'https://www.github.com/thejamesthomas/javabank'
-                    }
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+                pom {
+                    name = project.name
+                    description = 'Native Java bindings for Mountebank'
+                    url = 'http://github.com/thejamesthomas/javabank'
 
                     licenses {
                         license {
-                            name 'The MIT License (MIT)'
-                            url 'http://opensource.org/licenses/MIT'
-                            distribution 'repo'
+                            name = 'The MIT License (MIT)'
+                            url = 'http://opensource.org/licenses/MIT'
                         }
-                    }
-
-                    issueManagement {
-                        url 'http://github.com/thejamesthomas/javabank/issues'
-                        system 'GitHub Issues'
                     }
 
                     developers {
                         developer {
-                            id 'thejamesthomas'
-                            name 'James Thomas'
-                            url 'https://github.com/thejamesthomas'
-                            email 'james@duckzilla.com'
+                            id = 'thejamesthomas'
+                            name = 'James Thomas'
+                            url = 'https://github.com/thejamesthomas'
+                            email = 'james@duckzilla.com'
                         }
+                    }
+
+                    scm {
+                        url = 'https://www.github.com/thejamesthomas/javabank'
+                    }
+
+                    issueManagement {
+                        url = 'http://github.com/thejamesthomas/javabank/issues'
+                        system = 'GitHub Issues'
                     }
                 }
             }
+        }
+        repositories {
+            maven {
+                def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+                credentials {
+                    username = ossrhUsername
+                    password = ossrhPassword
+                }
+            }
+        }
+    }
+
+    signing {
+        sign publishing.publications.mavenJava
+    }
+
+    javadoc {
+        if(JavaVersion.current().isJava9Compatible()) {
+            options.addBooleanOption('html4', true)
         }
     }
 }
