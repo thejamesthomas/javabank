@@ -4,7 +4,7 @@ jobs:
   - stage: test
     script: ./gradlew test
   - stage: publish
-    script: ./gradlew publish -PossrhUsername=${OSSRH_USERNAME} -PossrhPassword=${OSSRH_PASSWORD} -Psigning.keyId=${SIGNING_KEY} -Psigning.password=${SIGNING_PASSWORD} -Psigning.secretKeyRingFile=`pwd`/javabank.gpg
+    script: ./gradlew publish -PossrhUsername="${OSSRH_USERNAME}" -PossrhPassword="${OSSRH_PASSWORD}" -Psigning.keyId="${SIGNING_KEY}" -Psigning.password="${SIGNING_PASSWORD}" -Psigning.secretKeyRingFile="`pwd`/javabank.gpg"
 
 stages:
 - test
