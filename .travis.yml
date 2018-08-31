@@ -1,13 +1,16 @@
 language: java
-
 jobs:
   include:
-    - stage: test
-      script: ./gradlew clean test
-#    - stage: upload
-#      script: ./gradlew clean uploadArchives -PossrhUsername=${OSSRH_USERNAME} -PossrhPassword=${OSSRH_PASSWORD}
+  - stage: test
+    script: ./gradlew test
+  - stage: publish
+    script: ./gradlew publish -PossrhUsername=${OSSRH_USERNAME} -PossrhPassword=${OSSRH_PASSWORD}
 
 stages:
-  - test
-#  - name: upload
-#    if: branch = master
+- test
+- name: publish
+  if: branch = master
+before_install:
+- openssl aes-256-cbc -K $encrypted_676823bf0942_key -iv $encrypted_676823bf0942_iv
+  -in javabank.gpg.enc -out javabank.gpg -d
+- gpg --import javabank.gpg

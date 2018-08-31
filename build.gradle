@@ -5,7 +5,7 @@ allprojects {
     apply plugin: 'signing'
 
     group = 'org.mbtest.javabank'
-    version = "${majorVersion}.${minorVersion}.${patchVersion}"
+    version = "${majorVersion}.${minorVersion}.${patchVersion}-SNAPSHOT"
 
     if (!project.hasProperty("ossrhUsername")) {
         ext.ossrhUsername = ""
