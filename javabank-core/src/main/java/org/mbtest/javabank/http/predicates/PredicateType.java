@@ -2,6 +2,7 @@ package org.mbtest.javabank.http.predicates;
 
 import lombok.Getter;
 
+//@formatter:off
 public enum PredicateType {
     EQUALS("equals"),
     DEEP_EQUALS("deepEquals"),
@@ -19,7 +20,10 @@ public enum PredicateType {
     private String value;
 
     PredicateType(String value) {
-
         this.value = value;
+    }
+    
+    public String getValue() {
+    		return value;
     }
 }
