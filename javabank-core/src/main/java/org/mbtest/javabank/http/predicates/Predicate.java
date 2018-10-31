@@ -8,6 +8,8 @@ import java.util.Map;
 import org.json.simple.JSONObject;
 
 public class Predicate extends HashMap {
+
+	private static final String XPATH = "xpath";
 	private static final String PATH = "path";
 	private static final String METHOD = "method";
 	private static final String QUERY = "query";
@@ -34,7 +36,7 @@ public class Predicate extends HashMap {
 		return this;
 	}
 
-	private Predicate addMapEntry(String key, String name, String value) {
+	private Predicate addMapEntry(String key, String name, Object value) {
 		if (!data.containsKey(key)) {
 			data.put(key, newHashMap());
 		}
@@ -58,6 +60,16 @@ public class Predicate extends HashMap {
 		return new JSONObject(this);
 	}
 
+	public Predicate withXpath(Map<String, Object> values) {
+		this.put(XPATH, values);
+		return this;
+	}
+
+	public Predicate withXpath() {
+		this.put(XPATH, newHashMap());
+		return this;
+	}
+
 	public String getType() {
 		return type.getValue();
 	}
@@ -74,6 +86,21 @@ public class Predicate extends HashMap {
 
 	public Predicate withQueryParameters(Map<String, String> parameters) {
 		addEntry(QUERY, parameters);
+		return this;
+	}
+
+	public Predicate withXpathSelector(String value) {
+		return addToXpath("selector", value);
+	}
+
+	public Predicate addToXpath(String key, Object value) {
+		if (!this.containsKey(XPATH)) {
+			this.put(XPATH, newHashMap());
+		}
+
+		Map entryMap = (Map) this.get(XPATH);
+		entryMap.put(key, value);
+
 		return this;
 	}
 
@@ -95,6 +122,10 @@ public class Predicate extends HashMap {
 	public Predicate withBody(String body) {
 		addEntry(BODY, body);
 		return this;
+	}
+
+	public Map<String, Object> getXpath() {
+		return (Map<String, Object>) getEntry(XPATH);
 	}
 
 	public String getPath() {
