@@ -1,13 +1,19 @@
 package org.mbtest.javabank.http.predicates;
 
-import com.google.common.collect.ImmutableMap;
-import org.json.simple.JSONValue;
-import org.junit.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mbtest.javabank.http.predicates.PredicateType.EQUALS;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.simple.JSONValue;
+import org.junit.Test;
+
+import com.google.common.collect.ImmutableMap;
+
+//@formatter:off
 public class PredicateTest {
+	
     @Test
     public void shouldSetTheName() {
         Predicate predicate = new Predicate(PredicateType.EQUALS);
@@ -93,4 +99,38 @@ public class PredicateTest {
 
         assertThat(JSONValue.parse(equalsJsonMatcher.toString())).isEqualTo(JSONValue.parse(expectedJson));
     }
+    
+	@Test
+	public void shouldBuildPredicateWithXpath() {
+		Map<String, Object> xpathValues = new HashMap<>();
+		xpathValues.put("selector", "someselector");
+		Map<String, Object> nsValues = new HashMap<>();
+		nsValues.put("a", "somensvalue");
+		xpathValues.put("ns", nsValues);
+
+		Predicate predicate = new Predicate(PredicateType.DEEP_EQUALS)
+								.withBody("somebody")
+								.withXpath(xpathValues);
+		
+		String expectedJson = "{\"deepEquals\":{\"body\":\"somebody\"},\"xpath\":{\"ns\":{\"a\":\"somensvalue\"},\"selector\":\"someselector\"}}";
+		
+		assertThat(JSONValue.parse(predicate.toString())).isEqualTo(JSONValue.parse(expectedJson));
+				
+	}
+	
+	@Test
+	public void shouldBuildPredicateWithXpath2() {
+		Map<String, Object> nsValues = new HashMap<>();
+		nsValues.put("a", "somensvalue");
+
+		Predicate predicate = new Predicate(PredicateType.DEEP_EQUALS)
+								.withBody("somebody")
+								.withXpath()
+								.withXpathSelector("someselector")
+								.addToXpath("ns", nsValues);
+		
+		String expectedJson = "{\"deepEquals\":{\"body\":\"somebody\"},\"xpath\":{\"ns\":{\"a\":\"somensvalue\"},\"selector\":\"someselector\"}}";
+
+		assertThat(JSONValue.parse(predicate.toString())).isEqualTo(JSONValue.parse(expectedJson));
+	}
 }
